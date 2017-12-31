@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="420.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="290.0" layoutY="84.0" mnemonicParsing="false" text="Browse" />
+      <TextField layoutX="125.0" layoutY="84.0" />
+      <Text layoutX="46.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PDF file" underline="true" />
+      <Text layoutX="50.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K-max" underline="true" />
+      <TextField layoutX="125.0" layoutY="139.0" />
+      <Text layoutX="26.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Segment-size" underline="true" />
+      <TextField layoutX="125.0" layoutY="195.0" />
+      <Text layoutX="40.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evolution" underline="true" />
+      <TextField layoutX="125.0" layoutY="249.0" />
+      <Button layoutX="186.0" layoutY="324.0" mnemonicParsing="false" text="Start" />
+      <Text layoutX="55.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plagiarism Detection">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>
-
