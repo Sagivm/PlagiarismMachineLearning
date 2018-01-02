@@ -1,6 +1,8 @@
 package Controller;
 
+import java.awt.Component;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,8 +13,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.io.RandomAccessRead;
+import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainController implements Initializable {
 
@@ -33,6 +40,7 @@ public class MainController implements Initializable {
 	private static int segmentSize;
 	private static int evolution;
 	private static String doc;
+	private String filePath;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -45,15 +53,24 @@ public class MainController implements Initializable {
 		kmax = Integer.parseInt(kMaxTextField.getText());
 		segmentSize = Integer.parseInt(sSizeTextField.getText());
 		evolution = Integer.parseInt(evoTextField.getText());
+
+		//fix pdf analyzer
+		
 		PDDocument pd = new PDDocument();
-		File file = new File("pathname");
-		pd = PDDocument.load(file);
-		PDFTextStripper pdfTextStripper = new PDFTextStripper();
-		doc = pdfTextStripper.getText(pd);
+		File file = new File(filePath);
 	}
 
 	@FXML
 	private void browse(ActionEvent event) throws IOException {
+		JFileChooser chooser =new JFileChooser();
+		FileNameExtensionFilter filter=new FileNameExtensionFilter("*","pdf");
+		chooser.setFileFilter(filter);
+		int returnVal=chooser.showOpenDialog(null);
+		if(returnVal==JFileChooser.APPROVE_OPTION)
+		{
+			filePath=chooser.getSelectedFile().getAbsolutePath();
+			fileTextField.setText(filePath);
+		}
 		
 
 	}

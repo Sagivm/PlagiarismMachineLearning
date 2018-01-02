@@ -6,10 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="pdfbox-2.0.8.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Sagiv.M/git/PlagiarismMachineLearning/pdfbox-1.8.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
