@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -44,6 +45,19 @@ public class MainController implements Initializable {
 	}
 
 	@FXML
+	private void browse(ActionEvent event) throws IOException {
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("*", "pdf");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(null);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			filePath = chooser.getSelectedFile().getAbsolutePath();
+			fileTextField.setText(filePath);
+		}
+
+	}
+
+	@FXML
 	private void start(ActionEvent event) throws IOException {
 		kmax = Integer.parseInt(kMaxTextField.getText());
 		segmentSize = Integer.parseInt(sSizeTextField.getText());
@@ -58,20 +72,16 @@ public class MainController implements Initializable {
 		System.out.print(doc);
 		document.close();
 		// Send settings to stem and stop word analyzer
+		
+		//Test ngramGenerator
+//		String s1="aabaaba";
+//		String s2="baaaaba";
+//		ArrayList<String> segments=new ArrayList<String>();
+//		segments.add(s1);
+//		segments.add(s2);
+//		NgramGeneratorController.GenerateNgrams(segments);
 	}
 
-	@FXML
-	private void browse(ActionEvent event) throws IOException {
-		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("*", "pdf");
-		chooser.setFileFilter(filter);
-		int returnVal = chooser.showOpenDialog(null);
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			filePath = chooser.getSelectedFile().getAbsolutePath();
-			fileTextField.setText(filePath);
-		}
-
-	}
 
 	public static int getKmax() {
 		return kmax;

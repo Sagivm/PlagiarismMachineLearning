@@ -5,10 +5,10 @@ public class Term {
 	private String term;
 	private int frequncy;
 	
-	public Term(String term, int frequncy) {
+	public Term(String term) {
 		super();
 		this.term = term;
-		this.frequncy = frequncy;
+		this.frequncy = 1;
 	}
 	public String getTerm() {
 		return term;
