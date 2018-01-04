@@ -35,8 +35,9 @@ public class MainController implements Initializable {
 	private static int kmax;
 	private static int segmentSize;
 	private static int evolution;
+	private static String doc;
 	private String filePath;
-	private String doc;
+	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -93,6 +94,10 @@ public class MainController implements Initializable {
 
 	public static int getEvolution() {
 		return evolution;
+	}
+	public static String getDoc()
+	{
+		return doc;
 	}
 
 }
