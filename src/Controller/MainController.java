@@ -14,6 +14,9 @@ import javafx.event.ActionEvent;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+
+import Entity.Ngram;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -37,7 +40,6 @@ public class MainController implements Initializable {
 	private static int evolution;
 	private static String doc;
 	private String filePath;
-	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -70,19 +72,13 @@ public class MainController implements Initializable {
 		pdfTextStripper.setStartPage(0);
 		pdfTextStripper.setStartPage(document.getNumberOfPages());
 		doc = pdfTextStripper.getText(document);
-		System.out.print(doc);
+		System.out.print(doc+"\n\n");
 		document.close();
-		// Send settings to stem and stop word analyzer
-		
-		//Test ngramGenerator
-//		String s1="aabaaba";
-//		String s2="baaaaba";
-//		ArrayList<String> segments=new ArrayList<String>();
-//		segments.add(s1);
-//		segments.add(s2);
-//		NgramGeneratorController.GenerateNgrams(segments);
+		// Send doc to stem and stop word analyzer and then divide it into chunks
+		ArrayList<String>segments=TextEditorController.divideIntoChunks(TextEditorController.remover(doc), segmentSize);
+		//Ngram
+		ArrayList<Ngram> ngrams=NgramGeneratorController.GenerateNgrams(segments);
 	}
-
 
 	public static int getKmax() {
 		return kmax;
@@ -95,8 +91,8 @@ public class MainController implements Initializable {
 	public static int getEvolution() {
 		return evolution;
 	}
-	public static String getDoc()
-	{
+
+	public static String getDoc() {
 		return doc;
 	}
 
