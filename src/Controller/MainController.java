@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.fxml.JavaFXBuilderFactory;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -77,7 +78,13 @@ public class MainController implements Initializable {
 		// Send doc to stem and stop word analyzer and then divide it into chunks
 		ArrayList<String>segments=TextEditorController.divideIntoChunks(TextEditorController.remover(doc), segmentSize);
 		//Ngram
-		ArrayList<Ngram> ngrams=NgramGeneratorController.GenerateNgrams(segments);
+		String s1="aaaaa";
+		String s2="bbaaa";
+		ArrayList<String>test=new ArrayList();
+		test.add(s1);
+		test.add(s2);
+		//ArrayList<Ngram> ngrams=NgramController.GenerateNgrams(segments);
+		ArrayList<Ngram> ngrams=NgramController.GenerateNgrams(test);
 	}
 
 	public static int getKmax() {

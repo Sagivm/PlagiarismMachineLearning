@@ -24,12 +24,51 @@ public class Ngram {
 		}
 		
 	}
+	public Ngram() {
+		data=new ArrayList<Term>();
+	}
 	public ArrayList<Term> getData() {
 		return data;
 	}
 
 	public void setData(ArrayList<Term> data) {
 		this.data = data;
+	}
+	public int getTermValue(Term term)
+	{
+		for(int i=0;i<data.size();i++)
+		{
+			if(Term.cmpTerm(data.get(i).getTerm(),term.getTerm()))
+			{
+				return data.get(i).getFrequncy();
+			}
+		}
+		return 0;
+	}
+	public int getTermindex(Term term)
+	{
+		for(int i=0;i<data.size();i++)
+		{
+			if(Term.cmpTerm(data.get(i).getTerm(),term.getTerm()))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	public void alignToGeneral(Ngram generalNgram)
+	{
+		ArrayList<Term> data=new ArrayList<Term>();
+		for(int i=0;i<generalNgram.getData().size();i++)
+		{
+			Term term=generalNgram.data.get(i);
+			int index=this.getTermindex(term);
+			if(index==-1)
+				data.add(new Term(term.getTerm(),0));
+			else
+				data.add(new Term(this.getData().get(index)));
+		}
+		setData(data);
 	}
 	
 

@@ -74,7 +74,7 @@ public class TextEditorController {
 	}
 
 	
-	// returning chunks in size of k
+	// returning chunks in size of k words
 	public static ArrayList<String> divideIntoChunks(String s, int k){
 		ArrayList<String> arr=new ArrayList<String>();
 		String sub="";
