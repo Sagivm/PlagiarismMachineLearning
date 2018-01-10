@@ -73,18 +73,19 @@ public class MainController implements Initializable {
 		pdfTextStripper.setStartPage(0);
 		pdfTextStripper.setStartPage(document.getNumberOfPages());
 		doc = pdfTextStripper.getText(document);
-		System.out.print(doc+"\n\n");
+		System.out.print(doc + "\n\n");
 		document.close();
 		// Send doc to stem and stop word analyzer and then divide it into chunks
-		ArrayList<String>segments=TextEditorController.divideIntoChunks(TextEditorController.remover(doc), segmentSize);
-		//Ngram
-		String s1="aaaaa";
-		String s2="bbaaa";
-		ArrayList<String>test=new ArrayList();
+		ArrayList<String> segments = TextEditorController.divideIntoChunks(TextEditorController.remover(doc),
+				segmentSize);
+		// Ngram
+		String s1 = "aaaaa";
+		String s2 = "bbaaa";
+		ArrayList<String> test = new ArrayList();
 		test.add(s1);
 		test.add(s2);
-		//ArrayList<Ngram> ngrams=NgramController.GenerateNgrams(segments);
-		ArrayList<Ngram> ngrams=NgramController.GenerateNgrams(test);
+		// ArrayList<Ngram> ngrams=NgramController.GenerateNgrams(segments);
+		ArrayList<Ngram> ngrams = NgramController.GenerateNgrams(test);
 	}
 
 	public static int getKmax() {
