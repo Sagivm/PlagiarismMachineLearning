@@ -72,5 +72,6 @@ public class Ngram {
 		}
 		return sum / data.size();
 	}
+	
 
 }
