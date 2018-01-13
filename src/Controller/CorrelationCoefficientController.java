@@ -1,12 +1,13 @@
 package Controller;
 
+import java.io.NotActiveException;
 import java.util.ArrayList;
 
 import Entity.Ngram;
 import Entity.Term;
 
 public class CorrelationCoefficientController {
-	public static double computeSingleZV(ArrayList<Ngram> previousNgrams, Ngram query) {
+	private static double computeSingleZV(ArrayList<Ngram> previousNgrams, Ngram query) {
 		float zv = 0;
 		for (int i = 0; i < previousNgrams.size(); i++)
 			zv += computePearson(previousNgrams.get(i), query);
@@ -31,7 +32,7 @@ public class CorrelationCoefficientController {
 		return (top / Math.sqrt(botN * botM));
 	}
 
-	public static double DZV(ArrayList<Ngram> previousNgramsN, Ngram n, ArrayList<Ngram> previousNgramsM, Ngram m) {
+	private static Double DZV(ArrayList<Ngram> previousNgramsN, Ngram n, ArrayList<Ngram> previousNgramsM, Ngram m) {
 		double a = computeSingleZV(previousNgramsN, n) + computeSingleZV(previousNgramsM, m);
 		double b = computeSingleZV(previousNgramsM, n) + computeSingleZV(previousNgramsN, m);
 		return Math.abs(a - b);
@@ -42,15 +43,20 @@ public class CorrelationCoefficientController {
 		ArrayList<Double> piX=new ArrayList<>();
 		ArrayList<Double> piY=new ArrayList<>();
 		ArrayList<Double> result=new ArrayList<>();
-		ArrayList<Ngram> prevX=(ArrayList<Ngram>) ngrams.subList(0, x);
-		ArrayList<Ngram> prevY=(ArrayList<Ngram>) ngrams.subList(0, y);
+		ArrayList<Ngram> prevX=new ArrayList(ngrams.subList(0, x));
+		ArrayList<Ngram> prevY=new ArrayList(ngrams.subList(0, y));
 		Ngram ngramX=ngrams.get(x);
 		Ngram ngramY=ngrams.get(y);
-		for(int i=0;i<ngrams.size();i++)
+		for(int i=1;i<ngrams.size();i++)
 		{
 			ArrayList<Ngram> prev=new ArrayList(ngrams.subList(0,i));
-			piX.add(DZV(prevX, ngramX, prev, ngrams.get(i)));
-			piX.add(DZV(prevY, ngramY, prev, ngrams.get(i)));
+			Double pix= DZV(prevX, ngramX, prev, ngrams.get(i));
+			Double piy= DZV(prevY, ngramY, prev, ngrams.get(i));
+			if(!pix.isNaN()&&!piy.isNaN())
+			{
+				piX.add(pix);
+				piY.add(piy);
+			}
 		}
 		for(int i=0;i<piX.size();i++)
 		{
@@ -59,11 +65,11 @@ public class CorrelationCoefficientController {
 		return length(result);
 
 	}
-	public static double length(ArrayList<Double> vector)
+	private static double length(ArrayList<Double> vector)
 	{
 		double sum=0;
 		for(int i=0;i<vector.size();i++)
-			sum+=Math.pow(vector.get(i), 2.0);
+			sum+=Math.pow(vector.get(i).doubleValue(), 2.0);
 		return Math.sqrt(sum);
 	}
 

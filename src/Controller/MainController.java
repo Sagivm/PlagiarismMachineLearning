@@ -79,13 +79,27 @@ public class MainController implements Initializable {
 		ArrayList<String> segments = TextEditorController.divideIntoChunks(TextEditorController.remover(doc),
 				segmentSize);
 		// Ngram
-		String s1 = "aaaaa";
-		String s2 = "bbaaa";
-		ArrayList<String> test = new ArrayList();
-		test.add(s1);
-		test.add(s2);
-		// ArrayList<Ngram> ngrams=NgramController.GenerateNgrams(segments);
-		ArrayList<Ngram> ngrams = NgramController.GenerateNgrams(test);
+		ArrayList<Ngram> ngrams=NgramController.GenerateNgrams(segments);
+//		String s1 = "sagivmel";
+//		String s2 = "istheone";
+//		String s3 = "truewrit";
+//		String s4 = "erofthis";
+//		ArrayList<String> test = new ArrayList();
+//		test.add(s1);
+//		test.add(s2);
+//		test.add(s3);
+//		test.add(s4);
+		//
+//		ArrayList<Ngram> ngrams = NgramController.GenerateNgrams(test);
+		//calculate Dzevt vector
+		ArrayList<Double> DZVET=new ArrayList();
+		for(int i=1;i<ngrams.size();i++)
+		{
+			for(int j=i+1;j<ngrams.size();j++)
+			{
+				DZVET.add(CorrelationCoefficientController.DZVE(ngrams, i, j));
+			}
+		}
 	}
 
 	public static int getKmax() {
