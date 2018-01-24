@@ -34,12 +34,12 @@ public class Kmeans {
 	private static long RANDOM_SEED = 1234567;
 
 
-	public KmeansController(int k, double[][] data) {
+	public Kmeans(int k, double[][] data) {
 		this(k, data, new EuclideanDistance());
 	}
 
 
-	public KmeansController(int k, double[][] data, EuclideanDistance distanceFunction) {
+	public  Kmeans(int k, double[][] data, EuclideanDistance distanceFunction) {
 		this.k = k;
 		this.numberOfAttributes = data[0].length;
 		this.numberOfInstances = data.length;
