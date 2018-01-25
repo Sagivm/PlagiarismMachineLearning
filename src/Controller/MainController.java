@@ -41,6 +41,8 @@ public class MainController implements Initializable {
 	private static int evolution;
 	private static String doc;
 	private String filePath;
+	private static int optimalK;
+	public static ArrayList<Double> DZVET;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -80,25 +82,27 @@ public class MainController implements Initializable {
 				segmentSize);
 		// Ngram
 		ArrayList<Ngram> ngrams=NgramController.GenerateNgrams(segments);
-//		String s1 = "sagivmel";
-//		String s2 = "istheone";
-//		String s3 = "truewrit";
-//		String s4 = "erofthis";
-//		ArrayList<String> test = new ArrayList();
-//		test.add(s1);
-//		test.add(s2);
-//		test.add(s3);
-//		test.add(s4);
-		//
-//		ArrayList<Ngram> ngrams = NgramController.GenerateNgrams(test);
 		//calculate Dzevt vector
-		ArrayList<Double> DZVET=new ArrayList();
+		DZVET=new ArrayList<Double>();
 		for(int i=1;i<ngrams.size();i++)
 		{
 			for(int j=i+1;j<ngrams.size();j++)
 			{
 				DZVET.add(CorrelationCoefficientController.DZVE(ngrams, i, j));
 			}
+		}
+		OptimalKMeans ok=new OptimalKMeans();
+		optimalK=ok.findMaxSilhouette(DZVET, kmax);
+		ScreenController screenController = new ScreenController();
+		try {
+			screenController.replaceSceneContent("/boundry/resultUI.fxml", "Result");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			screenController.finalize();
+		} catch (Throwable e) {
+			e.printStackTrace();
 		}
 	}
 

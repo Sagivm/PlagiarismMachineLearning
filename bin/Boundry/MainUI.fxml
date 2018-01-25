@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="420.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
    <children>
-      <Button id="browseButton" fx:id="browseButton" layoutX="290.0" layoutY="84.0" mnemonicParsing="false" onAction="#browse" text="Browse" />
+      <Button id="browseButton" fx:id="browseButton" layoutX="319.0" layoutY="84.0" mnemonicParsing="false" onAction="#browse" text="Browse" />
       <TextField id="fileTextField" fx:id="fileTextField" layoutX="125.0" layoutY="84.0" />
       <Text layoutX="46.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PDF file" underline="true" />
       <Text layoutX="50.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="K-max" underline="true" />
