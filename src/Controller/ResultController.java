@@ -45,10 +45,10 @@ public class ResultController implements Initializable {
 		iSegment=new NumberAxis();
 		sChart=new LineChart<Number,Number>(iSegment,iCluster);
 		XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
-		for(int i=1;i<MainController.DZVET.size();i++)
+		/*for(int i=1;i<MainController.DZVET.size();i++)
 			//get ranking based on KMEANS fix
 			 series.getData().add(new XYChart.Data<Number, Number>(MainController.DZVET.get(i),null));
-	    sChart.getData().add(series);
+	    sChart.getData().add(series);*/
 		
 		
 	}

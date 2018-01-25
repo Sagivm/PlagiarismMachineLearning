@@ -39,30 +39,20 @@ public class CorrelationCoefficientController {
 
 	}
 	// x and y are indexes in n grams
-	public static double DZVE(ArrayList<Ngram> ngrams, int x,int y) {
+	public static ArrayList<Double> piXCalc(ArrayList<Ngram> ngrams, int x) {
 		ArrayList<Double> piX=new ArrayList<>();
-		ArrayList<Double> piY=new ArrayList<>();
-		ArrayList<Double> result=new ArrayList<>();
 		ArrayList<Ngram> prevX=new ArrayList(ngrams.subList(0, x));
-		ArrayList<Ngram> prevY=new ArrayList(ngrams.subList(0, y));
 		Ngram ngramX=ngrams.get(x);
-		Ngram ngramY=ngrams.get(y);
 		for(int i=1;i<ngrams.size();i++)
 		{
 			ArrayList<Ngram> prev=new ArrayList(ngrams.subList(0,i));
 			Double pix= DZV(prevX, ngramX, prev, ngrams.get(i));
-			Double piy= DZV(prevY, ngramY, prev, ngrams.get(i));
-			if(!pix.isNaN()&&!piy.isNaN())
+			if(!pix.isNaN())
 			{
 				piX.add(pix);
-				piY.add(piy);
 			}
 		}
-		for(int i=0;i<piX.size();i++)
-		{
-			result.add(piX.get(i)-piY.get(i));
-		}
-		return length(result);
+		return piX;
 
 	}
 	private static double length(ArrayList<Double> vector)

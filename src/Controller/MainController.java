@@ -42,7 +42,7 @@ public class MainController implements Initializable {
 	private static String doc;
 	private String filePath;
 	private static int optimalK;
-	public static ArrayList<Double> DZVET;
+	public static ArrayList pai;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -80,19 +80,19 @@ public class MainController implements Initializable {
 		// Send doc to stem and stop word analyzer and then divide it into chunks
 		ArrayList<String> segments = TextEditorController.divideIntoChunks(TextEditorController.remover(doc),
 				segmentSize);
+		System.out.print(segments.get(0));
 		// Ngram
 		ArrayList<Ngram> ngrams=NgramController.GenerateNgrams(segments);
 		//calculate Dzevt vector
-		DZVET=new ArrayList<Double>();
-		for(int i=1;i<ngrams.size();i++)
+		pai=new ArrayList<ArrayList<Double>>();
+		ArrayList<Double>temp=new ArrayList();
+		for(int i=0;i<ngrams.size();i++)
 		{
-			for(int j=i+1;j<ngrams.size();j++)
-			{
-				DZVET.add(CorrelationCoefficientController.DZVE(ngrams, i, j));
-			}
+			temp=CorrelationCoefficientController.piXCalc(ngrams, i);
+			pai.add(temp);
 		}
 		OptimalKMeans ok=new OptimalKMeans();
-		optimalK=ok.findMaxSilhouette(DZVET, kmax);
+		optimalK=ok.findMaxSilhouette(pai, kmax);
 		ScreenController screenController = new ScreenController();
 		try {
 			screenController.replaceSceneContent("/boundry/resultUI.fxml", "Result");
