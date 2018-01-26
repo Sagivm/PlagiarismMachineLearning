@@ -86,7 +86,7 @@ public class MainController implements Initializable {
 		//calculate Dzevt vector
 		pai=new ArrayList<ArrayList<Double>>();
 		ArrayList<Double>temp=new ArrayList();
-		for(int i=0;i<ngrams.size();i++)
+		for(int i=1;i<ngrams.size();i++)
 		{
 			temp=CorrelationCoefficientController.piXCalc(ngrams, i);
 			pai.add(temp);
