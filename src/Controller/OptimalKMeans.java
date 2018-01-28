@@ -28,6 +28,6 @@ public class OptimalKMeans {
 				max[1]=i;
 			}
 		}
-		 return max;
+		 return max; 
 	}
 }
