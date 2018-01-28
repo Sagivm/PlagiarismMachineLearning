@@ -88,7 +88,7 @@ public class Kmeans {
                 clusters[index].addIndex(i);
                 // set the converged value to false as long as there are changes on node/instance assignment.
                 converged = false;
-                numUpdates += 1;
+                numUpdates++;
             }
         }
         calculateNewCentroids();
@@ -98,7 +98,7 @@ public class Kmeans {
         if (numUpdates==this.lastNumberOfUpdates){
             converged = false;
         }
-
+        converged = false;
         // returns true if no node/instance changed its cluster assignment.
         return converged;
     }
