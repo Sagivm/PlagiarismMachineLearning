@@ -41,7 +41,7 @@ public class MainController implements Initializable {
 	private static int evolution;
 	private static String doc;
 	private String filePath;
-	private static ArrayList<Integer> optimalK;
+	private static int[] optimalK;
 	public static ArrayList pai;
 
 	@Override
