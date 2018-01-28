@@ -52,6 +52,13 @@ public class TextEditorController {
 	public static String remover(String s) {
 		// removing spaces and stop words
 		String[] s1 = s.split(" ");
+		//removing "," from text
+		for(int i=0;i<s1.length;i++) {
+			if(s1[i].endsWith(","))
+				s1[i]=s1[i].substring(0, s1[i].length()-1);
+			if(s1[i].startsWith(","))
+				s1[i]=s1[i].substring(1, s1[i].length());
+		}
 		String res = "";
 		for (int i = 0; i < s1.length; i++) {
 			if (contains(stopWords, s1[i]) == false)
