@@ -298,10 +298,16 @@ public class Kmeans {
             }
             // 10.33 from the book.
             if (a<b){
-                silhouette = (b-a) / b;
+            	if(b==0)
+            		 silhouette=0;
+            	else
+            		silhouette = (b-a) / b;
             }
             else{
-                silhouette = (b-a) / a;
+            	if(a==0)
+            		silhouette=0;
+            	else
+            		silhouette = (a-b) / a;
             }
 
             // get the average

@@ -6,7 +6,7 @@ import Entity.Kmeans;
 
 public class OptimalKMeans {
 
-	public static ArrayList<Integer>Silhouette;
+	public static ArrayList<Integer>Silhouette=new ArrayList<Integer>(); ;
 	public int[] findMaxSilhouette (ArrayList<ArrayList<Double>> pai, int Kmax) {
 		//double[][] data=(double[][]) pai.toArray();
 		double [][]data = new double [pai.size()][pai.get(0).size()] ;
@@ -22,9 +22,10 @@ public class OptimalKMeans {
 		max[1]=-1;
 		for (int i=2;i<Kmax;i++) {
 			Kmeans km=new Kmeans(i,data);
-			Silhouette.add((int)km.getAverageSilhouetteValue());
-			if(km.getAverageSilhouetteValue()>max[0]) {
-				max[0]=(int)km.getAverageSilhouetteValue();
+			Double temp= new Double(km.getAverageSilhouetteValue());
+			Silhouette.add(new Integer(temp.intValue()+1));
+			if(temp.intValue()+1>max[0]) {
+				max[0]=temp.intValue()+1;
 				max[1]=i;
 			}
 		}

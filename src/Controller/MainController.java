@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.JavaFXBuilderFactory;
 
@@ -93,17 +97,22 @@ public class MainController implements Initializable {
 		}
 		OptimalKMeans ok=new OptimalKMeans();
 		optimalK=ok.findMaxSilhouette(pai, kmax);
-		ScreenController screenController = new ScreenController();
-		try {
-			screenController.replaceSceneContent("/boundry/resultUI.fxml", "Result");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			screenController.finalize();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+//		ScreenController screenController = new ScreenController();
+//		try {
+//			screenController.replaceSceneContent("/boundry/resultUI.fxml", "Result");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			screenController.finalize();
+//		} catch (Throwable e) {
+//			e.printStackTrace();
+//		}
+		Parent resultPageP=FXMLLoader.load(getClass().getResource("/Boundry/ResultUI.fxml"));
+		Scene scene=new Scene(resultPageP);
+		Stage stage= new Stage();
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	public static int getKmax() {

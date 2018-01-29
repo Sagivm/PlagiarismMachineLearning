@@ -153,6 +153,9 @@ public class Cluster {
             }
 		}
 		// return the average
-		return sumDistance / (indices.size() - 1);
+		if(indices.size()==1)
+			return 0;
+		else
+			return sumDistance / (indices.size() - 1);
 	}
 }
